@@ -4,3 +4,21 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Local data
+.local/
+*.sqlite
+*.db
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# Figma plugin build
+figma-plugin/code.js
+figma-plugin/node_modules
