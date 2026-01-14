@@ -1,4 +1,4 @@
-import { User, Lock, Eye, EyeOff, Menu, ArrowRight, Fingerprint, Keypad } from "lucide-react";
+import { User, Lock, Eye, EyeOff, Menu, ArrowRight, Fingerprint, KeySquare } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
