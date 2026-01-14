@@ -17,9 +17,10 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [step, setStep] = useState<"login" | "2fa">("login");
+  const [step, setStep] = useState<"login" | "2fa" | "forgot-password" | "forgot-email">("login");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [isBiometricOpen, setIsBiometricOpen] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
   const [_, setLocation] = useLocation();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -30,6 +31,16 @@ export default function Login() {
   const handleVerify2FA = (e: React.FormEvent) => {
     e.preventDefault();
     setLocation("/dashboard");
+  };
+
+  const handleForgotPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep("2fa"); // Simulate sending OTP
+  };
+
+  const handleForgotEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep("2fa"); // Simulate sending OTP
   };
 
   const handleOtpChange = (index: number, value: string) => {
@@ -112,10 +123,18 @@ export default function Login() {
                 </div>
 
                 <div className="flex items-center justify-between text-sm font-medium">
-                  <button type="button" className="text-primary/80 hover:text-primary transition-colors">
+                  <button 
+                    type="button" 
+                    onClick={() => setStep("forgot-email")}
+                    className="text-primary/80 hover:text-primary transition-colors cursor-pointer"
+                  >
                     Forgot Email Id?
                   </button>
-                  <button type="button" className="text-primary/80 hover:text-primary transition-colors">
+                  <button 
+                    type="button" 
+                    onClick={() => setStep("forgot-password")}
+                    className="text-primary/80 hover:text-primary transition-colors cursor-pointer"
+                  >
                     Forgot Password?
                   </button>
                 </div>
@@ -177,6 +196,99 @@ export default function Login() {
                   </div>
                 </DrawerContent>
               </Drawer>
+            </motion.div>
+          ) : step === "forgot-password" ? (
+            <motion.div
+              key="forgot-password"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-8"
+            >
+              <div className="text-center space-y-2">
+                <h3 className="text-xl font-bold font-heading">Reset Password</h3>
+                <p className="text-sm text-muted-foreground">
+                  Enter your registered email or username to receive a reset code.
+                </p>
+              </div>
+
+              <form onSubmit={handleForgotPassword} className="space-y-6">
+                <div className="relative group">
+                  <div className="absolute left-3 top-3 text-muted-foreground group-focus-within:text-primary transition-colors">
+                    <User className="w-5 h-5" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Email or Username"
+                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs text-foreground"
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <button
+                    type="submit"
+                    className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-accent/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  >
+                    Send Reset Code
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setStep("login")}
+                    className="w-full py-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  >
+                    Back to Login
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          ) : step === "forgot-email" ? (
+            <motion.div
+              key="forgot-email"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-8"
+            >
+              <div className="text-center space-y-2">
+                <h3 className="text-xl font-bold font-heading">Find Email ID</h3>
+                <p className="text-sm text-muted-foreground">
+                  Enter your mobile number and PAN to recover your account.
+                </p>
+              </div>
+
+              <form onSubmit={handleForgotEmail} className="space-y-6">
+                <div className="space-y-4">
+                  <input
+                    type="tel"
+                    required
+                    placeholder="Mobile Number"
+                    className="w-full px-4 py-3 bg-white dark:bg-slate-900 border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs text-foreground"
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="PAN Number"
+                    className="w-full px-4 py-3 bg-white dark:bg-slate-900 border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs text-foreground uppercase"
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <button
+                    type="submit"
+                    className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-accent/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  >
+                    Recover Email ID
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setStep("login")}
+                    className="w-full py-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  >
+                    Back to Login
+                  </button>
+                </div>
+              </form>
             </motion.div>
           ) : (
             <motion.div
