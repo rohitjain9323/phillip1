@@ -1,5 +1,5 @@
 export const MOCK_USER = {
-  name: "ANKITA SAHU",
+  name: "Rohit Jain",
   id: "ankita.sahu",
   balance: 0,
   invested: 180558,
