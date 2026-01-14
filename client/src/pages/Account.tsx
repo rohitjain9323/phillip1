@@ -2,8 +2,21 @@ import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
 import { User, Settings, Bell, Shield, LogOut, ChevronRight, HelpCircle } from "lucide-react";
 import { MOCK_USER } from "@/lib/data";
+import { useLocation } from "wouter";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function Account() {
+  const [_, setLocation] = useLocation();
   const menuItems = [
     { label: "Account Details", icon: User },
     { label: "Settings", icon: Settings },
@@ -11,6 +24,10 @@ export default function Account() {
     { label: "Security & Privacy", icon: Shield },
     { label: "Help & Support", icon: HelpCircle },
   ];
+
+  const handleLogout = () => {
+    setLocation("/");
+  };
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -44,10 +61,31 @@ export default function Account() {
            ))}
         </div>
 
-        <button className="w-full p-4 rounded-2xl bg-red-50 text-red-600 font-bold flex items-center justify-center gap-2 hover:bg-red-100 transition-colors cursor-pointer">
-           <LogOut className="w-5 h-5" />
-           Logout
-        </button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <button className="w-full p-4 rounded-2xl bg-red-50 text-red-600 font-bold flex items-center justify-center gap-2 hover:bg-red-100 transition-colors cursor-pointer">
+               <LogOut className="w-5 h-5" />
+               Logout
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="rounded-3xl max-w-[90%] sm:max-w-lg">
+            <AlertDialogHeader>
+              <AlertDialogTitle className="font-heading text-xl">Confirm Logout</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to log out of your Phillip1 account?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter className="gap-2">
+              <AlertDialogCancel className="rounded-xl border-border">Cancel</AlertDialogCancel>
+              <AlertDialogAction 
+                onClick={handleLogout}
+                className="rounded-xl bg-red-600 hover:bg-red-700 text-white"
+              >
+                Logout
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
 
       </main>
 
