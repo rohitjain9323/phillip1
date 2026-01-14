@@ -45,7 +45,7 @@ export default function Dashboard() {
                 <span className="font-heading font-semibold text-foreground">{item.title}</span>
               </div>
               <div className="flex items-center gap-3">
-                 <span className="text-xs font-semibold text-primary underline underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity">Activate Now</span>
+                 <span className="text-xs font-semibold text-primary underline underline-offset-4 opacity-100 transition-opacity">Activate Now</span>
                  <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </motion.div>

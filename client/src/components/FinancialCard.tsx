@@ -89,11 +89,11 @@ export default function FinancialCard({
       </div>
 
       {/* Actions */}
-      <div className="p-4 grid grid-cols-2 gap-4 bg-white">
+      <div className="p-4 grid grid-cols-2 gap-4 bg-white dark:bg-slate-900 transition-colors">
         <button className="bg-accent hover:bg-accent/90 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-accent/20 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer text-sm">
            <Plus className="w-4 h-4" /> Add Funds
         </button>
-        <button className="bg-white border border-border text-foreground font-bold py-3 px-4 rounded-xl hover:bg-secondary transition-all flex items-center justify-center gap-2 cursor-pointer text-sm shadow-sm">
+        <button className="bg-white dark:bg-slate-900 border border-border text-foreground font-bold py-3 px-4 rounded-xl hover:bg-secondary transition-all flex items-center justify-center gap-2 cursor-pointer text-sm shadow-sm">
            View Details
         </button>
       </div>

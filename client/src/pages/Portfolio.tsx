@@ -22,7 +22,7 @@ export default function Portfolio() {
                 onClick={() => setActiveTab(tab)}
                 className={cn(
                   "pb-3 text-sm font-medium whitespace-nowrap transition-colors relative",
-                  activeTab === tab ? "text-primary font-bold" : "text-muted-foreground"
+                  activeTab === tab ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
                 )}
              >
                {tab}

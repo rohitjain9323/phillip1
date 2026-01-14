@@ -22,7 +22,7 @@ export default function Reports() {
               onClick={() => setActiveTab(tab)}
               className={cn(
                 "py-4 text-sm font-medium whitespace-nowrap transition-all relative",
-                activeTab === tab ? "text-primary font-bold" : "text-muted-foreground"
+                activeTab === tab ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
               )}
             >
               {tab}
