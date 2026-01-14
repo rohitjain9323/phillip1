@@ -15,7 +15,7 @@ import {
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("vaishal");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [step, setStep] = useState<"login" | "2fa">("login");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
