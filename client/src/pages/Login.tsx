@@ -48,7 +48,7 @@ export default function Login() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
-                className="w-full pl-10 pr-4 py-3 bg-white border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs"
+                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs text-foreground placeholder:text-muted-foreground/50"
               />
             </div>
 
@@ -61,7 +61,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full pl-10 pr-12 py-3 bg-white border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs"
+                className="w-full pl-10 pr-12 py-3 bg-white dark:bg-slate-900 border border-border rounded-xl focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs text-foreground placeholder:text-muted-foreground/50"
               />
               <button
                 type="button"
