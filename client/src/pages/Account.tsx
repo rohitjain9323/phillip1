@@ -1,8 +1,10 @@
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
-import { User, Settings, Bell, Shield, LogOut, ChevronRight, HelpCircle } from "lucide-react";
+import { User, Settings, Bell, Shield, LogOut, ChevronRight, HelpCircle, Moon, Sun } from "lucide-react";
 import { MOCK_USER } from "@/lib/data";
 import { useLocation } from "wouter";
+import { useTheme } from "@/hooks/use-theme";
+import { Switch } from "@/components/ui/switch";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,6 +19,8 @@ import {
 
 export default function Account() {
   const [_, setLocation] = useLocation();
+  const { theme, setTheme } = useTheme();
+  
   const menuItems = [
     { label: "Account Details", icon: User },
     { label: "Settings", icon: Settings },
@@ -44,6 +48,20 @@ export default function Account() {
               <h2 className="text-xl font-heading font-bold text-foreground">{MOCK_USER.name}</h2>
               <p className="text-sm text-muted-foreground">Client ID: {MOCK_USER.id}</p>
            </div>
+        </div>
+
+        {/* Theme Toggle */}
+        <div className="bg-card rounded-2xl border border-border shadow-sm p-4 flex items-center justify-between">
+           <div className="flex items-center gap-4">
+              <div className="p-2 bg-secondary rounded-lg">
+                {theme === "dark" ? <Moon className="w-5 h-5 text-primary" /> : <Sun className="w-5 h-5 text-primary" />}
+              </div>
+              <span className="font-medium text-foreground">Dark Mode</span>
+           </div>
+           <Switch 
+             checked={theme === "dark"} 
+             onCheckedChange={(checked: boolean) => setTheme(checked ? "dark" : "light")} 
+           />
         </div>
 
         {/* Menu */}
